@@ -13,34 +13,22 @@ IPET_ROOT = Path(r"C:\I-Pet")
 
 
 def _ipet_search(query, k=5):
-    """Consulta el RAG de I-Pet. Devuelve lista de {source, path, text, score}."""
+    """Consulta el RAG de I-Pet (SQLite FTS + embeddings)."""
     results = []
-    # Intento 1: importar módulo
     if IPET_ROOT.exists() and str(IPET_ROOT) not in sys.path:
         sys.path.insert(0, str(IPET_ROOT))
     try:
-        import core.rag_sql as rag_sql  # type: ignore
-        # API hipotética: search(query, k) -> list of dicts
-        hits = rag_sql.search(query, k) if hasattr(rag_sql, "search") else []
+        from core.rag_sql import get_rag  # type: ignore
+        r = get_rag()
+        hits = r.search(query, k=k)
         for h in (hits or []):
-            results.append({"source": "ipet", "path": h.get("path", ""), "text": h.get("text", ""), "score": 0.0})
-        if results:
-            return results
-    except Exception:
-        pass
-    # Intento 2: CLI
-    try:
-        proc = subprocess.run(
-            [str(IPET_ROOT / ".venv" / "Scripts" / "python.exe") if (IPET_ROOT / ".venv" / "Scripts" / "python.exe").exists() else "python",
-             "-m", "core.rag_cli", "search", query, "-k", str(k)],
-            cwd=str(IPET_ROOT), capture_output=True, text=True, timeout=30,
-        )
-        # parseo best-effort: cada línea con [path]
-        for line in proc.stdout.splitlines():
-            line = line.strip()
-            if line and "[" in line and "]" in line:
-                results.append({"source": "ipet", "path": line, "text": line, "score": 0.0})
-    except Exception:
+            results.append({
+                "source": "ipet",
+                "path": h.get("source", ""),
+                "text": h.get("text", "")[:800],
+                "score": float(h.get("score", 0.0)),
+            })
+    except Exception as e:
         pass
     return results[:k]
 
