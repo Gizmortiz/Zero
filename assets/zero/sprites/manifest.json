@@ -1,0 +1,124 @@
+{
+  "name": "Zero",
+  "author": "",
+  "size": [
+    220,
+    232
+  ],
+  "default": "idle",
+  "states": {
+    "idle": {
+      "file": "idle.png",
+      "frames": 6,
+      "fps": 2,
+      "loop": true
+    },
+    "thinking": {
+      "file": "thinking.png",
+      "frames": 2,
+      "fps": 3,
+      "loop": true
+    },
+    "happy": {
+      "file": "happy.png",
+      "frames": 4,
+      "fps": 4,
+      "loop": false,
+      "then": "idle"
+    },
+    "error": {
+      "file": "error.png",
+      "frames": 3,
+      "fps": 8,
+      "loop": false,
+      "then": "idle"
+    },
+    "confused": {
+      "file": "confused.png",
+      "frames": 2,
+      "fps": 3,
+      "loop": true
+    },
+    "searching": {
+      "file": "searching.png",
+      "frames": 7,
+      "fps": 6,
+      "loop": true
+    },
+    "analyzing": {
+      "file": "analyzing.png",
+      "frames": 7,
+      "fps": 8,
+      "loop": true
+    },
+    "working": {
+      "file": "working.png",
+      "frames": 4,
+      "fps": 10,
+      "loop": true
+    },
+    "walking": {
+      "file": "walking.png",
+      "frames": 4,
+      "fps": 8,
+      "loop": true
+    },
+    "running": {
+      "file": "running.png",
+      "frames": 3,
+      "fps": 10,
+      "loop": true
+    },
+    "dashing": {
+      "file": "dashing.png",
+      "frames": 4,
+      "fps": 12,
+      "loop": false,
+      "then": "idle"
+    },
+    "resting": {
+      "file": "resting.png",
+      "frames": 1,
+      "fps": 1,
+      "loop": true
+    },
+    "sleeping": {
+      "file": "sleeping.png",
+      "frames": 1,
+      "fps": 1,
+      "loop": true
+    },
+    "success": {
+      "file": "success.png",
+      "frames": 1,
+      "fps": 1,
+      "loop": false,
+      "then": "idle"
+    },
+    "talking": {
+      "file": "standing.png",
+      "frames": 4,
+      "fps": 10,
+      "loop": true
+    },
+    "standing": {
+      "file": "standing.png",
+      "frames": 4,
+      "fps": 5,
+      "loop": true
+    },
+    "attack": {
+      "file": "attack.png",
+      "frames": 7,
+      "fps": 10,
+      "loop": false,
+      "then": "idle"
+    },
+    "dozing": {
+      "file": "dozing.png",
+      "frames": 6,
+      "fps": 3,
+      "loop": true
+    }
+  }
+}
