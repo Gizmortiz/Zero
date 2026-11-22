@@ -37,8 +37,9 @@ class MasterWindow(QWidget):
         self.btn_chat = QPushButton("Chat")
         self.btn_repos = QPushButton("Repos")
         self.btn_memory = QPushButton("Memoria")
+        self.btn_system = QPushButton("Sistema")
         self.btn_settings = QPushButton("Ajustes")
-        for b in (self.btn_chat, self.btn_repos, self.btn_memory, self.btn_settings):
+        for b in (self.btn_chat, self.btn_repos, self.btn_memory, self.btn_system, self.btn_settings):
             head.addWidget(b)
         lay.addLayout(head)
 
@@ -48,7 +49,8 @@ class MasterWindow(QWidget):
         self.btn_chat.clicked.connect(lambda: self.stack.setCurrentIndex(0))
         self.btn_repos.clicked.connect(lambda: self.stack.setCurrentIndex(1))
         self.btn_memory.clicked.connect(lambda: self.stack.setCurrentIndex(2))
-        self.btn_settings.clicked.connect(lambda: self.stack.setCurrentIndex(3))
+        self.btn_system.clicked.connect(lambda: self.stack.setCurrentIndex(3))
+        self.btn_settings.clicked.connect(lambda: self.stack.setCurrentIndex(4))
 
     def add_page(self, w):
         self.stack.addWidget(w)
