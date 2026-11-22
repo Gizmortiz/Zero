@@ -9,7 +9,7 @@ if str(ROOT) not in sys.path:
 
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit,
     QPushButton, QLabel, QMessageBox)
-from core import settings as S
+from core import settings as S, codex_pet_importer as CPI
 
 
 class SettingsWindow(QWidget):
@@ -41,6 +41,14 @@ class SettingsWindow(QWidget):
         b2.clicked.connect(self.save_llm)
         lay.addWidget(b2)
 
+        lay.addWidget(QLabel(""))
+        lay.addWidget(QLabel("Importar Codex Pet (por ID, ej. genshin-impact-keqing):"))
+        self.petid = QLineEdit(); self.petid.setPlaceholderText("genshin-impact-keqing")
+        lay.addWidget(self.petid)
+        b3 = QPushButton("Importar pet")
+        b3.clicked.connect(self.import_pet)
+        lay.addWidget(b3)
+
         lay.addStretch(1)
 
     def save_tok(self):
@@ -50,3 +58,13 @@ class SettingsWindow(QWidget):
     def save_llm(self):
         S.set_llm(self.base.text().strip(), self.key.text().strip(), self.model.text().strip())
         QMessageBox.information(self, "Zero", "Modelo guardado.")
+
+    def import_pet(self):
+        pid = self.petid.text().strip()
+        if not pid:
+            return
+        try:
+            pid2, name = CPI.import_pet(pid)
+            QMessageBox.information(self, "Zero", f"Pet importado: {name} ({pid2}). Reinicia Zero para usarlo.")
+        except Exception as e:
+            QMessageBox.warning(self, "Zero", f"Error importando pet:\n{e}")
