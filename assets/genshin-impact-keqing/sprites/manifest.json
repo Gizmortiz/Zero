@@ -1,0 +1,58 @@
+{
+  "name": "刻晴",
+  "size": [
+    192,
+    208
+  ],
+  "default": "idle",
+  "states": {
+    "idle": {
+      "file": "idle.png",
+      "frames": 6,
+      "fps": 8,
+      "loop": true
+    },
+    "running": {
+      "file": "running.png",
+      "frames": 8,
+      "fps": 8,
+      "loop": true
+    },
+    "happy": {
+      "file": "happy.png",
+      "frames": 4,
+      "fps": 8,
+      "loop": false
+    },
+    "dashing": {
+      "file": "dashing.png",
+      "frames": 5,
+      "fps": 8,
+      "loop": false
+    },
+    "error": {
+      "file": "error.png",
+      "frames": 8,
+      "fps": 8,
+      "loop": true
+    },
+    "thinking": {
+      "file": "thinking.png",
+      "frames": 6,
+      "fps": 8,
+      "loop": true
+    },
+    "walking": {
+      "file": "walking.png",
+      "frames": 6,
+      "fps": 8,
+      "loop": true
+    },
+    "analyzing": {
+      "file": "analyzing.png",
+      "frames": 6,
+      "fps": 8,
+      "loop": false
+    }
+  }
+}
