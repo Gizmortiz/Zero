@@ -23,6 +23,7 @@ class DesktopPet(QWidget):
     chat_requested = Signal()
     repos_requested = Signal()
     memory_requested = Signal()
+    system_requested = Signal()
     settings_requested = Signal()
     quit_requested = Signal()
 
@@ -100,7 +101,8 @@ class DesktopPet(QWidget):
         a = menu.addAction("Chat"); a.triggered.connect(self.chat_requested.emit)
         b = menu.addAction("Repos"); b.triggered.connect(self.repos_requested.emit)
         c = menu.addAction("Memoria"); c.triggered.connect(self.memory_requested.emit)
-        d = menu.addAction("Ajustes"); d.triggered.connect(self.settings_requested.emit)
+        d = menu.addAction("Sistema"); d.triggered.connect(self.system_requested.emit)
+        e = menu.addAction("Ajustes"); e.triggered.connect(self.settings_requested.emit)
         menu.addSeparator()
         q = menu.addAction("Salir"); q.triggered.connect(self.quit_requested.emit)
         menu.exec(event.globalPos())
