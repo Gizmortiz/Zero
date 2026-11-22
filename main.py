@@ -19,11 +19,12 @@ from core.chat_session import ChatSession
 
 
 def main():
+    pet_key = sys.argv[1] if len(sys.argv) > 1 else "zero"
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
     app.setQuitOnLastWindowClosed(False)
 
-    session = ChatSession("zero", "Zero")
+    session = ChatSession(pet_key, pet_key.capitalize())
 
     master = MasterWindow()
     chat = ChatWindow()
@@ -38,7 +39,7 @@ def main():
     master.add_page(memory)
     master.add_page(settings)
 
-    pet = DesktopPet(session)
+    pet = DesktopPet(session, pet_key)
     pet.chat_requested.connect(lambda: (master.show(), master.raise_(), master.activateWindow(), master.stack.setCurrentIndex(0)))
     pet.repos_requested.connect(lambda: (master.show(), master.raise_(), master.activateWindow(), master.stack.setCurrentIndex(1)))
     pet.memory_requested.connect(lambda: (master.show(), master.raise_(), master.activateWindow(), master.stack.setCurrentIndex(2)))
